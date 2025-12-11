@@ -22,23 +22,7 @@ void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t* d
 {
   sendFrame = 1;
 
-/*
-// Print the ArtNet data to serial
-  Serial.print("Universe: ");
-  Serial.println(universe);
-  
-  Serial.print("Length: ");
-  Serial.println(length);
-  
-  Serial.print("Sequence: ");
-  Serial.println(sequence);
-  
-  Serial.print("Data: ");
-  for (uint16_t i = 0; i < length; i++) {
-    Serial.print(data[i]);  // Print each byte in decimal
-    Serial.print(" ");      // Space separator for readability
-  }
-  Serial.println();  // New line after data array*/
+
   
   // set brightness of the whole strip 
   if (universe == 15)
@@ -55,16 +39,16 @@ void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t* d
     if (led < numLeds)
     {
       leds[led] = CRGB(data[i * 3], data[i * 3 + 1], data[i * 3 + 2]);
-Serial.print("LED: ");
-    Serial.print(led);
-    Serial.print(" ");  // Separador para legibilidad
-    
-    Serial.print(data[i * 3]);       // Rojo
-    Serial.print(", ");
-    Serial.print(data[i * 3 + 1]);   // Verde
-    Serial.print(", ");
-    Serial.print(data[i * 3 + 2]);   // Azul
-    Serial.println();  // Nueva línea para separar cada LED
+      Serial.print("LED: ");
+      Serial.print(led);
+      Serial.print(" ");  // Separador para legibilidad
+      
+      Serial.print(data[i * 3]);       // Rojo
+      Serial.print(", ");
+      Serial.print(data[i * 3 + 1]);   // Verde
+      Serial.print(", ");
+      Serial.print(data[i * 3 + 2]);   // Azul
+      Serial.println();  // Nueva línea para separar cada LED
     }
   }
   previousDataLength = length;     
@@ -103,3 +87,4 @@ void loop()
   // we call the read function inside the loop
   artnet.read();
 }
+
